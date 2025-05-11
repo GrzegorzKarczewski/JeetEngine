@@ -2,6 +2,7 @@
 #include "Window.h"
 #include "ImGuiLayer.h"
 #include "Mesh.h" // Adjust path if needed
+#include "Shaders.h"
 
 Application::Application() {
     Init();
@@ -17,6 +18,7 @@ void Application::Init() {
     m_ImGuiLayer->Init();
 
     m_Mesh = new Mesh();
+    m_Shaders = new Shader();
     glEnable(GL_DEPTH_TEST);
 }
 
@@ -30,6 +32,7 @@ void Application::Run() {
 
         m_ImGuiLayer->Begin();
         m_Mesh->Draw();
+        m_Shaders->ApplyShaderProgram();
         m_ImGuiLayer->Render();
         m_ImGuiLayer->End();
 
@@ -39,6 +42,7 @@ void Application::Run() {
 
 void Application::Shutdown() {
     delete m_Mesh;
+    delete m_Shaders;
     m_ImGuiLayer->Shutdown();
     delete m_ImGuiLayer;
     delete m_Window;

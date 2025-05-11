@@ -2,6 +2,7 @@
 class Window;
 class ImGuiLayer;
 class Mesh;
+class Shader;
 
 class Application {
 public:
@@ -16,4 +17,5 @@ private:
     Window* m_Window;
     ImGuiLayer* m_ImGuiLayer;
     Mesh* m_Mesh;
+    Shader* m_Shaders;
 };

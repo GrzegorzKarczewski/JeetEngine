@@ -63,6 +63,9 @@
     <ClCompile Include="Mesh.cpp">
       <Filter>Source Files\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="Shaders.cpp">
+      <Filter>Source Files\Renderer</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="D:\Coding\imgui\imgui.h">
@@ -87,6 +90,9 @@
       <Filter>Source Files\UI</Filter>
     </ClInclude>
     <ClInclude Include="Mesh.h">
+      <Filter>Source Files\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="Shaders.h">
       <Filter>Source Files\Renderer</Filter>
     </ClInclude>
   </ItemGroup>
