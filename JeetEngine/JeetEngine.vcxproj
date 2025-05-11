@@ -71,7 +71,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>D:\Coding\opengl\glad\include;D:\Coding\opengl\glfw-3.4\glfw-3.4\include;$(IncludePath)</IncludePath>
+    <IncludePath>D:\Coding\imgui\backends;D:\Coding\imgui;D:\Coding\opengl\glad\include;D:\Coding\opengl\glfw-3.4\glfw-3.4\include;$(IncludePath)</IncludePath>
     <LibraryPath>D:\Coding\opengl\glfw-3.4\glfw-3.4\build\src\Debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -132,8 +132,29 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Application.cpp" />
+    <ClCompile Include="D:\Coding\imgui\backends\imgui_impl_glfw.cpp" />
+    <ClCompile Include="D:\Coding\imgui\backends\imgui_impl_opengl3.cpp" />
+    <ClCompile Include="D:\Coding\imgui\imgui.cpp" />
+    <ClCompile Include="D:\Coding\imgui\imgui_demo.cpp" />
+    <ClCompile Include="D:\Coding\imgui\imgui_draw.cpp" />
+    <ClCompile Include="D:\Coding\imgui\imgui_tables.cpp" />
+    <ClCompile Include="D:\Coding\imgui\imgui_widgets.cpp" />
     <ClCompile Include="glad.c" />
+    <ClCompile Include="ImGuiLayer.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Mesh.cpp" />
+    <ClCompile Include="Window.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Application.h" />
+    <ClInclude Include="D:\Coding\imgui\backends\imgui_impl_glfw.h" />
+    <ClInclude Include="D:\Coding\imgui\backends\imgui_impl_opengl3.h" />
+    <ClInclude Include="D:\Coding\imgui\imgui.h" />
+    <ClInclude Include="D:\Coding\imgui\imgui_internal.h" />
+    <ClInclude Include="ImGuiLayer.h" />
+    <ClInclude Include="Mesh.h" />
+    <ClInclude Include="Window.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
