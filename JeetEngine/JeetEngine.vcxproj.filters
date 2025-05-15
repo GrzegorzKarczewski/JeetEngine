@@ -96,4 +96,12 @@
       <Filter>Source Files\Renderer</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="4.5.shader.vs">
+      <Filter>Source Files</Filter>
+    </None>
+    <None Include="4.5.shader.fs">
+      <Filter>Source Files</Filter>
+    </None>
+  </ItemGroup>
 </Project>

@@ -27,7 +27,10 @@ void ImGuiLayer::Render() {
     ImGui::Begin("Stats");
     ImGuiIO& io = ImGui::GetIO();
     ImGui::Text("FPS: %.1f", 1.0f / io.DeltaTime);
+    ImGui::BeginMenu("Test Menu", true);
+
     ImGui::End();
+    
 }
 
 void ImGuiLayer::End() {

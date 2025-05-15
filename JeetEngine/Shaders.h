@@ -1,16 +1,26 @@
 #pragma once
+#include <glad/glad.h> 
 
-class Shader {
+#include <string>
+#include <fstream>
+#include <sstream>
+#include <iostream>
+
+
+class Shader
+{
 public:
-	Shader();
-	~Shader();
-	void ApplyShaderProgram();
+    // the program ID
+    unsigned int ID;
 
-private:
-	const char* m_vertexShaderSource;
-	const char* m_fragmentShaderSource;
-	unsigned int m_shaderProgram;
-	unsigned int m_fragmentShader;
-	unsigned int m_vertexShader;
+    // constructor reads and builds the shader
+    Shader(const char* vertexPath, const char* fragmentPath);
+    // use/activate the shader
+    void use();
+    // utility uniform functions
+    void setBool(const std::string& name, bool value) const;
+    void setInt(const std::string& name, int value) const;
+    void setFloat(const std::string& name, float value) const;
+    void checkCompileErrors(unsigned int shader, std::string type) const;
 
 };
