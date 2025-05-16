@@ -33,6 +33,11 @@ Shader::Shader(const char* vertexPath, const char* fragmentPath)
 		// convert stream into string
 		vertexCode = vShaderStream.str();
 		fragmentCode = fShaderStream.str();
+		if (vertexCode.empty() || fragmentCode.empty()) {
+			std::cerr << "ERROR: Shader source code is empty.\n";
+			return;
+		}
+
 	}
 	catch (std::ifstream::failure& e)
 	{
