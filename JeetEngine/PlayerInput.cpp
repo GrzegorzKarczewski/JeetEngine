@@ -10,40 +10,68 @@
 PlayerInput::PlayerInput(GLFWwindow* window, Camera* camera)
 	: m_Window(window), m_Camera(camera)
 {
+	glfwSetInputMode(m_Window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+	double x, y;
+	glfwGetCursorPos(m_Window, &x, &y);
+	m_LastX = static_cast<float>(x);
+	m_LastY = static_cast<float>(y);
+
+	glfwSetWindowUserPointer(m_Window, this);
+	glfwSetScrollCallback(m_Window, ScrollCallback);
 }
 
 PlayerInput::~PlayerInput()
 {
 }
 
-void PlayerInput::processInput(float deltaTime)
+void PlayerInput::processInput(float dt)
 {
-	if (glfwGetKey(m_Window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
-		glfwSetWindowShouldClose(m_Window, true);
+    /* ---------- ESC -> release cursor ---------- */
+    static bool escHeld = false;
+    if (glfwGetKey(m_Window, GLFW_KEY_ESCAPE) == GLFW_PRESS && !escHeld) {
+        escHeld = true;
+        glfwSetInputMode(m_Window, GLFW_CURSOR,
+            m_CursorFree ? GLFW_CURSOR_DISABLED : GLFW_CURSOR_NORMAL);
+        m_CursorFree = !m_CursorFree;
+        m_FirstMouse = true;                 // avoid jump on re-capture
+    }
+    if (glfwGetKey(m_Window, GLFW_KEY_ESCAPE) == GLFW_RELEASE) escHeld = false;
 
-	static bool fullscreenTogglePressed = false;
-	if (glfwGetKey(m_Window, GLFW_KEY_F11) == GLFW_PRESS && !fullscreenTogglePressed) {
-		fullscreenTogglePressed = true;
-		static bool fullscreen = false;
-		fullscreen = !fullscreen;
+    /* ---------- click -> re-capture when free ---------- */
+    if (m_CursorFree &&
+        glfwGetMouseButton(m_Window, GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS) {
+        glfwSetInputMode(m_Window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+        m_CursorFree = false;
+        m_FirstMouse = true;
+    }
 
-		GLFWmonitor* monitor = fullscreen ? glfwGetPrimaryMonitor() : nullptr;
-		const GLFWvidmode* mode = glfwGetVideoMode(glfwGetPrimaryMonitor());
-		glfwSetWindowMonitor(m_Window, monitor, 0, 0, mode->width, mode->height, mode->refreshRate);
-	}
-	if (glfwGetKey(m_Window, GLFW_KEY_F11) == GLFW_RELEASE)
-		fullscreenTogglePressed = false;
+    /* ---------- keyboard movement only when captured ---------- */
+    if (!m_CursorFree) {
+        if (glfwGetKey(m_Window, GLFW_KEY_W) == GLFW_PRESS) m_Camera->ProcessKeyboard(FORWARD, dt);
+        if (glfwGetKey(m_Window, GLFW_KEY_S) == GLFW_PRESS) m_Camera->ProcessKeyboard(BACKWARD, dt);
+        if (glfwGetKey(m_Window, GLFW_KEY_A) == GLFW_PRESS) m_Camera->ProcessKeyboard(LEFT, dt);
+        if (glfwGetKey(m_Window, GLFW_KEY_D) == GLFW_PRESS) m_Camera->ProcessKeyboard(RIGHT, dt);
 
-	// Camera/Player Movement
-	if (glfwGetKey(m_Window, GLFW_KEY_W) == GLFW_PRESS)
-	{
-		m_Camera->ProcessKeyboard(FORWARD, deltaTime);
-		std::cout << "Pressed W" << std::endl;
-	}
-	if (glfwGetKey(m_Window, GLFW_KEY_S) == GLFW_PRESS)
-		m_Camera->ProcessKeyboard(BACKWARD, deltaTime);
-	if (glfwGetKey(m_Window, GLFW_KEY_A) == GLFW_PRESS)
-		m_Camera->ProcessKeyboard(LEFT, deltaTime);
-	if (glfwGetKey(m_Window, GLFW_KEY_D) == GLFW_PRESS)
-		m_Camera->ProcessKeyboard(RIGHT, deltaTime);
+        /* mouse look */
+        double xposD, yposD;
+        glfwGetCursorPos(m_Window, &xposD, &yposD);
+        float xpos = (float)xposD, ypos = (float)yposD;
+        if (m_FirstMouse) { m_LastX = xpos; m_LastY = ypos; m_FirstMouse = false; }
+        float xoff = (xpos - m_LastX) * m_Sensitivity;
+        float yoff = (m_LastY - ypos) * m_Sensitivity;
+        m_LastX = xpos; m_LastY = ypos;
+        m_Camera->ProcessMouseMovement(xoff, yoff);
+    }
 }
+
+/* ---------- wheel ---------- */
+void PlayerInput::ScrollCallback(GLFWwindow* win, double /*x*/, double y)
+{
+	static_cast<PlayerInput*>(glfwGetWindowUserPointer(win))->onScroll(static_cast<float>(y));
+}
+
+void PlayerInput::onScroll(float yoffset)
+{
+	m_Camera->ProcessMouseScroll(yoffset);
+}
+

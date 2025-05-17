@@ -14,16 +14,16 @@ public:
     Application();
     ~Application();
     void Run();
+    void Shutdown();
 
 private:
     void Init();
-    void Shutdown();
 
-    Window* m_Window;
-    ImGuiLayer* m_ImGuiLayer;
-    Camera* m_Camera;
-    Mesh* m_Mesh;
-    Shader* m_Shaders;
-    PlayerInput* m_PlayerInput;
+    std::unique_ptr<Window>        m_Window;
+    std::unique_ptr<ImGuiLayer>    m_ImGuiLayer;
+    std::unique_ptr<Camera>        m_Camera;
+    std::unique_ptr<Mesh>          m_Mesh;
+    std::unique_ptr<Shader>        m_Shaders;
+    std::unique_ptr<PlayerInput>   m_PlayerInput;
     std::vector<std::unique_ptr<Texture>> m_Textures;
 };

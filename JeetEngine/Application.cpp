@@ -27,8 +27,8 @@ Application::~Application() {
 void Application::Init() {
 	std::cout << "Current working directory: " << std::filesystem::current_path() << "\n";
 
-	m_Window = new Window(800, 600, "JeetEngine");
-	m_ImGuiLayer = new ImGuiLayer(m_Window->GetGLFWwindow());
+	m_Window = std::make_unique<Window>(800, 600, "JeetEngine");
+	m_ImGuiLayer = std::make_unique<ImGuiLayer>(m_Window->GetGLFWwindow());
 	m_ImGuiLayer->Init();
 	float vertices[] = {
 		// positions          // colors           // texture coords
@@ -41,23 +41,21 @@ void Application::Init() {
 							   1, 2, 3 // second triangle
 	};
 
-	m_Mesh = new Mesh(vertices, sizeof(vertices), indices ,sizeof(indices) /sizeof(unsigned int));
+	m_Mesh = std::make_unique<Mesh>(vertices, sizeof(vertices), indices ,sizeof(indices) /sizeof(unsigned int));
 
-	m_Camera = new Camera(
+	m_Camera = std::make_unique<Camera>(
 		glm::vec3(0.0f, 0.0f, 3.0f),   // position
 		glm::vec3(0.0f, 1.0f, 0.0f),   // world-up
 		-90.0f,                        // yaw   (look toward −Z)
 		0.0f);                         // pitch (level)
 
 	if (m_Camera != nullptr) {
-		m_PlayerInput = new PlayerInput(m_Window->GetGLFWwindow(), m_Camera);
+		m_PlayerInput = std::make_unique<PlayerInput>(m_Window->GetGLFWwindow(), m_Camera.get());
 	}
 	else
 		std::cout << "Camera is nullptr" << std::endl;
 
-	m_Shaders = new Shader("Shaders/4.5.texture.vs", "Shaders/4.5.texture.fs");
-
-
+	m_Shaders = std::make_unique <Shader>("Shaders/4.5.texture.vs", "Shaders/4.5.texture.fs");
 	m_Textures.push_back(std::make_unique<Texture>("Resources/Textures/awesomeface.png"));
 	m_Textures.push_back(std::make_unique<Texture>("Resources/Textures/container.jpg"));
 
@@ -107,11 +105,5 @@ void Application::Run() {
 }
 
 void Application::Shutdown() {
-	delete m_Mesh;
-	delete m_Shaders;
-	delete m_Camera;
-	delete m_PlayerInput;
 	m_ImGuiLayer->Shutdown();
-	delete m_ImGuiLayer;
-	delete m_Window;
 }
