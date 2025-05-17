@@ -1,7 +1,9 @@
 #include "Window.h"
+#include "Camera.h"
 #include <iostream>
 
-Window::Window(int width, int height, const char* title) {
+Window::Window(int width, int height, const char* title) 
+    :m_SCR_WIDTH(width), m_SCR_HEIGHT(height) {
     glfwInit();
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 5);
@@ -44,21 +46,8 @@ void Window::PollEvents() {
 }
 
 void Window::ProcessInput() {
-    if (glfwGetKey(m_Window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
-        glfwSetWindowShouldClose(m_Window, true);
 
-    static bool fullscreenTogglePressed = false;
-    if (glfwGetKey(m_Window, GLFW_KEY_F11) == GLFW_PRESS && !fullscreenTogglePressed) {
-        fullscreenTogglePressed = true;
-        static bool fullscreen = false;
-        fullscreen = !fullscreen;
-
-        GLFWmonitor* monitor = fullscreen ? glfwGetPrimaryMonitor() : nullptr;
-        const GLFWvidmode* mode = glfwGetVideoMode(glfwGetPrimaryMonitor());
-        glfwSetWindowMonitor(m_Window, monitor, 0, 0, mode->width, mode->height, mode->refreshRate);
-    }
-    if (glfwGetKey(m_Window, GLFW_KEY_F11) == GLFW_RELEASE)
-        fullscreenTogglePressed = false;
+    // cout out to the seperate class
 }
 
 void Window::FramebufferSizeCallback(GLFWwindow*, int width, int height) {

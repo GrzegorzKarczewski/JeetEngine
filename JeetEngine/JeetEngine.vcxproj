@@ -134,6 +134,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
+    <ClCompile Include="Camera.cpp" />
     <ClCompile Include="D:\Coding\imgui\backends\imgui_impl_glfw.cpp" />
     <ClCompile Include="D:\Coding\imgui\backends\imgui_impl_opengl3.cpp" />
     <ClCompile Include="D:\Coding\imgui\imgui.cpp" />
@@ -145,6 +146,7 @@
     <ClCompile Include="ImGuiLayer.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Mesh.cpp" />
+    <ClCompile Include="PlayerInput.cpp" />
     <ClCompile Include="Shaders.cpp" />
     <ClCompile Include="stb_image.cpp" />
     <ClCompile Include="Texture.cpp" />
@@ -152,20 +154,18 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h" />
+    <ClInclude Include="Camera.h" />
     <ClInclude Include="D:\Coding\imgui\backends\imgui_impl_glfw.h" />
     <ClInclude Include="D:\Coding\imgui\backends\imgui_impl_opengl3.h" />
     <ClInclude Include="D:\Coding\imgui\imgui.h" />
     <ClInclude Include="D:\Coding\imgui\imgui_internal.h" />
     <ClInclude Include="ImGuiLayer.h" />
     <ClInclude Include="Mesh.h" />
+    <ClInclude Include="PlayerInput.h" />
     <ClInclude Include="Shaders.h" />
     <ClInclude Include="stb_image.h" />
     <ClInclude Include="Texture.h" />
     <ClInclude Include="Window.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="4.5.shader.fs" />
-    <None Include="4.5.shader.vs" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

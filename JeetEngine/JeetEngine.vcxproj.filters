@@ -72,6 +72,12 @@
     <ClCompile Include="stb_image.cpp">
       <Filter>Source Files\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerInput.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="D:\Coding\imgui\imgui.h">
@@ -107,13 +113,11 @@
     <ClInclude Include="stb_image.h">
       <Filter>Source Files\Renderer</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="4.5.shader.vs">
-      <Filter>Source Files</Filter>
-    </None>
-    <None Include="4.5.shader.fs">
-      <Filter>Source Files</Filter>
-    </None>
+    <ClInclude Include="Camera.h">
+      <Filter>Source Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerInput.h">
+      <Filter>Source Files\Core</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
