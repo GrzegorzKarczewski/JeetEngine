@@ -45,11 +45,6 @@ void Window::PollEvents() {
     glfwPollEvents();
 }
 
-void Window::ProcessInput() {
-
-    // cout out to the seperate class
-}
-
 void Window::FramebufferSizeCallback(GLFWwindow*, int width, int height) {
     glViewport(0, 0, width, height);
 }

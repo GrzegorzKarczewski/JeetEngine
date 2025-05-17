@@ -73,7 +73,6 @@ void Application::Run() {
 		lastFrame = currentFrame;
 
 		m_Window->PollEvents();
-		/*m_Window->ProcessInput();*/
 		m_PlayerInput->processInput(deltaTime);
 
 		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
