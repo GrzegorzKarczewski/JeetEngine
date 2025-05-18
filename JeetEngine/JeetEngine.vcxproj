@@ -144,6 +144,7 @@
     <ClCompile Include="D:\Coding\imgui\imgui_widgets.cpp" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="ImGuiLayer.cpp" />
+    <ClCompile Include="Log.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="PlayerInput.cpp" />
@@ -159,6 +160,7 @@
     <ClInclude Include="D:\Coding\imgui\imgui.h" />
     <ClInclude Include="D:\Coding\imgui\imgui_internal.h" />
     <ClInclude Include="ImGuiLayer.h" />
+    <ClInclude Include="Log.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="Model.h" />
     <ClInclude Include="PlayerInput.h" />

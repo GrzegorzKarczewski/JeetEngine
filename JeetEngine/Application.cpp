@@ -14,11 +14,13 @@
 #include <assimp/Importer.hpp>
 #include <assimp/scene.h>
 #include <assimp/postprocess.h>
+#include "Log.h"
 
+unsigned int SCR_WIDTH = 800;
+unsigned int SCR_HEIGHT = 600;
 
 float lastFrame = 0.0f;
 float deltaTime = 0.0f;
-
 Application::Application() {
 	Init();
 }
@@ -29,8 +31,11 @@ Application::~Application() {
 
 void Application::Init() {
 
+	JeetLogger::Get().Initialize("JeetEngine.log");
 
-	m_Window = std::make_unique<Window>(800, 600, "JeetEngine");
+	m_Window = std::make_unique<Window>(SCR_WIDTH,SCR_HEIGHT, "JeetEngine");
+	JeetLogger::Get().Info("Screen width and height:%dx%d",SCR_WIDTH, SCR_HEIGHT);
+
 	m_ImGuiLayer = std::make_unique<ImGuiLayer>(m_Window->GetGLFWwindow());
 	m_ImGuiLayer->Init();
 
@@ -44,21 +49,41 @@ void Application::Init() {
 		m_PlayerInput = std::make_unique<PlayerInput>(m_Window->GetGLFWwindow(), m_Camera.get());
 	}
 	else
-		std::cout << "Camera is nullptr" << std::endl;
+		JeetLogger::Get().Error("Couldnt initialize Camera");
 
 	m_Shaders = std::make_unique <Shader>("Shaders/4.5.texture.vs", "Shaders/4.5.texture.fs");
+	if (m_Shaders) {
+		JeetLogger::Get().Info("Shaders succesfully loaded!");
+	}
 	stbi_set_flip_vertically_on_load(true);
 
 	glEnable(GL_DEPTH_TEST);
 
-	m_Models.push_back(std::make_unique<Model>("Resources/Models/backpack/backpack.obj"));
-	m_Models.push_back(std::make_unique<Model>("Resources/Models/girl/girl.obj"));
+	try {
+		m_Models.push_back(std::make_unique<Model>("Resources/Models/backpack/backpack.obj"));
+		JeetLogger::Get().Info("Loaded model: backpack.obj");
+	}
+	catch (const std::exception& e) {
+		JeetLogger::Get().Error("Failed to load backpack.obj: %s", e.what());
+	}
+
+	try {
+		m_Models.push_back(std::make_unique<Model>("Resources/Models/girl/girl.obj"));
+		JeetLogger::Get().Info("Loaded model: girl.obj");
+	}
+	catch (const std::exception& e) {
+		JeetLogger::Get().Error("Failed to load girl.obj: %s", e.what());
+	}
 
 
 
 }
 
 void Application::Run() {
+	if (!m_Window || !m_ImGuiLayer || !m_Camera || !m_Shaders || m_Models.empty()) {
+		JeetLogger::Get().Error("One or more core components are not initialized. Aborting run loop.");
+		return;
+	}
 	while (!m_Window->ShouldClose()) {
 		// --- time step ---
 		float currentFrame = (float)glfwGetTime();
@@ -105,4 +130,6 @@ void Application::Run() {
 
 void Application::Shutdown() {
 	m_ImGuiLayer->Shutdown();
+	JeetLogger::Get().Shutdown();
+
 }
