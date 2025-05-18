@@ -28,7 +28,7 @@ Application::~Application() {
 }
 
 void Application::Init() {
-	std::cout << "Current working directory: " << std::filesystem::current_path() << "\n";
+
 
 	m_Window = std::make_unique<Window>(800, 600, "JeetEngine");
 	m_ImGuiLayer = std::make_unique<ImGuiLayer>(m_Window->GetGLFWwindow());
@@ -57,10 +57,14 @@ void Application::Init() {
 		std::cout << "Camera is nullptr" << std::endl;
 
 	m_Shaders = std::make_unique <Shader>("Shaders/4.5.texture.vs", "Shaders/4.5.texture.fs");
+	stbi_set_flip_vertically_on_load(true);
+
+	glEnable(GL_DEPTH_TEST);
+
 	m_Model = std::make_unique<Model>("Resources/Models/backpack/backpack.obj");
 
 
-	glEnable(GL_DEPTH_TEST);
+
 }
 
 void Application::Run() {
