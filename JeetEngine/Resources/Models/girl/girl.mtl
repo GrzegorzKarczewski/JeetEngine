@@ -1,0 +1,261 @@
+# Blender MTL File: 'None'
+# Material Count: 22
+
+newmtl Denim_shorts
+Ns 1000.000000
+Ka 1.000000 1.000000 1.000000
+Kd 1.000000 1.000000 1.000000
+Ks 1.000000 1.000000 1.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Bump D:\\UnrealProjects\\HalonHellfire\\Assets\\GirlTest.fbm\\Denim_shorts_Normal.jpg
+map_Kd D:\\UnrealProjects\\HalonHellfire\\Assets\\GirlTest.fbm\\Denim_shorts_Diffuse.jpg
+
+newmtl Dress
+Ns 100.000018
+Ka 1.000000 1.000000 1.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.300000 0.300000 0.300000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Bump D:\\UnrealProjects\\HalonHellfire\\Assets\\GirlTest.fbm\\Dress_Normal.jpg
+map_Kd D:\\UnrealProjects\\HalonHellfire\\Assets\\GirlTest.fbm\\Dress_Diffuse.jpg
+
+newmtl Hair_Transparency
+Ns 199.999995
+Ka 1.000000 1.000000 1.000000
+Kd 1.000000 1.000000 1.000000
+Ks 1.000000 1.000000 1.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_d D:\\UnrealProjects\\HalonHellfire\\Assets\\GirlTest.fbm\\Hair_Transparency_Opacity.jpg
+
+newmtl Scalp_Transparency
+Ns 1000.000000
+Ka 1.000000 1.000000 1.000000
+Kd 1.000000 1.000000 1.000000
+Ks 1.000000 1.000000 1.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd D:\\UnrealProjects\\HalonHellfire\\Assets\\GirlTest.fbm\\Scalp_Transparency_Diffuse.jpg
+map_d D:\\UnrealProjects\\HalonHellfire\\Assets\\GirlTest.fbm\\Scalp_Transparency_Opacity.jpg
+
+newmtl Std_Cornea_L
+Ns 109.999998
+Ka 1.000000 1.000000 1.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 0.552786
+illum 1
+map_Kd D:\\UnrealProjects\\HalonHellfire\\Assets\\GirlTest.fbm\\Std_Cornea_L_Diffuse.jpg
+
+newmtl Std_Cornea_R
+Ns 109.999998
+Ka 1.000000 1.000000 1.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 0.552786
+illum 1
+map_Kd D:\\UnrealProjects\\HalonHellfire\\Assets\\GirlTest.fbm\\Std_Cornea_R_Diffuse.jpg
+
+newmtl Std_Eye_L
+Ns 199.999995
+Ka 1.000000 1.000000 1.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.600000 0.600000 0.600000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Bump D:\\UnrealProjects\\HalonHellfire\\Assets\\GirlTest.fbm\\Std_Eye_L_Normal.jpg
+map_Kd D:\\UnrealProjects\\HalonHellfire\\Assets\\GirlTest.fbm\\Std_Eye_L_Diffuse.jpg
+
+newmtl Std_Eye_Occlusion_L
+Ns 10.000005
+Ka 1.000000 1.000000 1.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 1
+map_Kd D:\\UnrealProjects\\HalonHellfire\\Assets\\GirlTest.fbm\\Std_Eye_Occlusion_L_Diffuse.jpg
+map_d D:\\UnrealProjects\\HalonHellfire\\Assets\\GirlTest.fbm\\Std_Eye_Occlusion_R_Opacity.jpg
+
+newmtl Std_Eye_Occlusion_R
+Ns 10.000005
+Ka 1.000000 1.000000 1.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 1
+map_Kd D:\\UnrealProjects\\HalonHellfire\\Assets\\GirlTest.fbm\\Std_Eye_Occlusion_R_Diffuse.jpg
+map_d D:\\UnrealProjects\\HalonHellfire\\Assets\\GirlTest.fbm\\Std_Eye_Occlusion_R_Opacity.jpg
+
+newmtl Std_Eye_R
+Ns 199.999995
+Ka 1.000000 1.000000 1.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.600000 0.600000 0.600000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Bump D:\\UnrealProjects\\HalonHellfire\\Assets\\GirlTest.fbm\\Std_Eye_R_Normal.jpg
+map_Kd D:\\UnrealProjects\\HalonHellfire\\Assets\\GirlTest.fbm\\Std_Eye_R_Diffuse.jpg
+
+newmtl Std_Eyelash
+Ns 20.000006
+Ka 1.000000 1.000000 1.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 1
+map_Bump D:\\UnrealProjects\\HalonHellfire\\Assets\\GirlTest.fbm\\Std_Eyelash_Normal.png
+map_Kd D:\\UnrealProjects\\HalonHellfire\\Assets\\GirlTest.fbm\\Std_Eyelash_Diffuse.jpg
+map_d D:\\UnrealProjects\\HalonHellfire\\Assets\\GirlTest.fbm\\Std_Eyelash_Opacity.jpg
+
+newmtl Std_Lower_Teeth
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 1
+map_Kd D:\\UnrealProjects\\HalonHellfire\\Assets\\GirlTest.fbm\\Std_Lower_Teeth_Diffuse.png
+
+newmtl Std_Nails
+Ns 199.999995
+Ka 1.000000 1.000000 1.000000
+Kd 1.000000 1.000000 1.000000
+Ks 1.000000 1.000000 1.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Bump -bm 0.000000 D:\\UnrealProjects\\HalonHellfire\\Assets\\GirlTest.fbm\\Std_Nails_Normal.png
+map_Kd D:\\UnrealProjects\\HalonHellfire\\Assets\\GirlTest.fbm\\Std_Nails_Diffuse.jpg
+
+newmtl Std_Skin_Arm
+Ns 199.999995
+Ka 1.000000 1.000000 1.000000
+Kd 1.000000 1.000000 1.000000
+Ks 1.000000 1.000000 1.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Bump D:\\UnrealProjects\\HalonHellfire\\Assets\\GirlTest.fbm\\Std_Skin_Arm_Normal.png
+map_Kd D:\\UnrealProjects\\HalonHellfire\\Assets\\GirlTest.fbm\\Std_Skin_Arm_Diffuse.jpg
+
+newmtl Std_Skin_Body
+Ns 199.999995
+Ka 1.000000 1.000000 1.000000
+Kd 1.000000 1.000000 1.000000
+Ks 1.000000 1.000000 1.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Bump D:\\UnrealProjects\\HalonHellfire\\Assets\\GirlTest.fbm\\Std_Skin_Body_Normal.png
+map_Kd D:\\UnrealProjects\\HalonHellfire\\Assets\\GirlTest.fbm\\Std_Skin_Body_Diffuse.jpg
+
+newmtl Std_Skin_Head
+Ns 199.999995
+Ka 1.000000 1.000000 1.000000
+Kd 1.000000 1.000000 1.000000
+Ks 1.000000 1.000000 1.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Bump D:\\UnrealProjects\\HalonHellfire\\Assets\\GirlTest.fbm\\Std_Skin_Head_Normal.png
+map_Kd D:\\UnrealProjects\\HalonHellfire\\Assets\\GirlTest.fbm\\Std_Skin_Head_Diffuse.jpg
+
+newmtl Std_Skin_Leg
+Ns 199.999995
+Ka 1.000000 1.000000 1.000000
+Kd 1.000000 1.000000 1.000000
+Ks 1.000000 1.000000 1.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Bump D:\\UnrealProjects\\HalonHellfire\\Assets\\GirlTest.fbm\\Std_Skin_Leg_Normal.png
+map_Kd D:\\UnrealProjects\\HalonHellfire\\Assets\\GirlTest.fbm\\Std_Skin_Leg_Diffuse.jpg
+
+newmtl Std_Tearline_L
+Ns 10.000005
+Ka 1.000000 1.000000 1.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 1
+map_Kd D:\\UnrealProjects\\HalonHellfire\\Assets\\GirlTest.fbm\\Std_Tearline_L_Diffuse.jpg
+map_d D:\\UnrealProjects\\HalonHellfire\\Assets\\GirlTest.fbm\\Std_Tearline_R_Opacity.jpg
+
+newmtl Std_Tearline_R
+Ns 10.000005
+Ka 1.000000 1.000000 1.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 1
+map_Kd D:\\UnrealProjects\\HalonHellfire\\Assets\\GirlTest.fbm\\Std_Tearline_R_Diffuse.jpg
+map_d D:\\UnrealProjects\\HalonHellfire\\Assets\\GirlTest.fbm\\Std_Tearline_R_Opacity.jpg
+
+newmtl Std_Tongue
+Ns 20.000006
+Ka 1.000000 1.000000 1.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 1
+map_Bump D:\\UnrealProjects\\HalonHellfire\\Assets\\GirlTest.fbm\\Std_Tongue_Normal.jpg
+map_Kd D:\\UnrealProjects\\HalonHellfire\\Assets\\GirlTest.fbm\\Std_Tongue_Diffuse.jpg
+
+newmtl Std_Upper_Teeth
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 1
+map_Kd D:\\UnrealProjects\\HalonHellfire\\Assets\\GirlTest.fbm\\Std_Upper_Teeth_Diffuse.jpg
+
+newmtl Toon_Eyebrows_Transparency
+Ns 99.999980
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 1
+map_Kd D:\\UnrealProjects\\HalonHellfire\\Assets\\GirlTest.fbm\\Toon_Eyebrows_Transparency_Diffuse.png

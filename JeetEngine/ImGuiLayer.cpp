@@ -28,6 +28,7 @@ void ImGuiLayer::Render() {
     if (ImGui::BeginMenuBar()) {
         if (ImGui::BeginMenu("Test Menu")) {
             // Menu items here
+            ImGui::MenuItem("Change the model scale:", nullptr, false, true);
             ImGui::EndMenu();
         }
         ImGui::EndMenuBar();

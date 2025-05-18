@@ -33,16 +33,6 @@ void Application::Init() {
 	m_Window = std::make_unique<Window>(800, 600, "JeetEngine");
 	m_ImGuiLayer = std::make_unique<ImGuiLayer>(m_Window->GetGLFWwindow());
 	m_ImGuiLayer->Init();
-	float vertices[] = {
-		// positions          // colors           // texture coords
-		 0.5f,  0.5f, 0.5f,   1.0f, 0.0f, 0.0f,   1.0f, 1.0f, // top right
-		 0.5f, -0.5f, 0.3f,   0.0f, 1.0f, 0.0f,   1.0f, 0.0f, // bottom right
-		-0.5f, -0.5f, -0.3f,   0.0f, 0.0f, 1.0f,   0.0f, 0.0f, // bottom left
-		-0.5f,  0.5f, -0.5f,   1.0f, 1.0f, 0.0f,   0.0f, 1.0f  // top left 
-	};
-	unsigned int indices[] = { 0, 1, 3, // first triangle
-							   1, 2, 3 // second triangle
-	};
 
 	m_Camera = std::make_unique<Camera>(
 		glm::vec3(0.0f, 0.0f, 3.0f),   // position
@@ -61,7 +51,8 @@ void Application::Init() {
 
 	glEnable(GL_DEPTH_TEST);
 
-	m_Model = std::make_unique<Model>("Resources/Models/backpack/backpack.obj");
+	m_Models.push_back(std::make_unique<Model>("Resources/Models/backpack/backpack.obj"));
+	m_Models.push_back(std::make_unique<Model>("Resources/Models/girl/girl.obj"));
 
 
 
@@ -88,14 +79,22 @@ void Application::Run() {
 			(float)m_Window->GetScreenWidth() / (float)m_Window->GetScreenHeight(), 0.1f, 100.0f);
 		m_Shaders->setMat4("view", view);
 		m_Shaders->setMat4("projection", projection);
+		m_Shaders->setVec3("lightPos", glm::vec3(1.2f, 1.0f, 2.0f));
+		m_Shaders->setVec3("lightColor", glm::vec3(1.0f, 1.0f, 1.0f));
+		m_Shaders->setVec3("viewPos", m_Camera->Position);
+
+
 		
 		// render the model
 		glm::mat4 model = glm::mat4(1.0f);
 		model = glm::translate(model, glm::vec3(0.0f, 0.0f, 0.0f)); // translate it down so it's at the center of the scene
 		model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));	// it's a bit too big for our scene, so scale it down
 		m_Shaders->setMat4("model", model);
-		m_Model->Draw(*m_Shaders);
-
+		/*for (int i = 0; i < m_Models.size(); i++) {
+			m_Models[i]->Draw(*m_Shaders);
+		}
+		*/
+		m_Models[1]->Draw(*m_Shaders);
 		
 		m_ImGuiLayer->Render();
 		m_ImGuiLayer->End();
