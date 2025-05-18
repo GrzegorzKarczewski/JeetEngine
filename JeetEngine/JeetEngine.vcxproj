@@ -71,8 +71,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>D:\Coding\imgui\backends;D:\Coding\imgui;D:\Coding\opengl\glad\include;D:\Coding\opengl\glfw-3.4\glfw-3.4\include;$(IncludePath)</IncludePath>
-    <LibraryPath>D:\Coding\opengl\glfw-3.4\glfw-3.4\build\src\Debug;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Users\jean\source\repos\JeetEngine\JeetEngine\ExternalLibraries\Assimp\include;D:\Coding\imgui\backends;D:\Coding\imgui;D:\Coding\opengl\glad\include;D:\Coding\opengl\glfw-3.4\glfw-3.4\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\jean\source\repos\JeetEngine\JeetEngine\ExternalLibraries\Assimp\lib;D:\Coding\opengl\glfw-3.4\glfw-3.4\build\src\Debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -113,7 +113,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>glfw3.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glfw3.lib;opengl32.lib;assimp-vc143-mt.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -149,7 +149,6 @@
     <ClCompile Include="PlayerInput.cpp" />
     <ClCompile Include="Shaders.cpp" />
     <ClCompile Include="stb_image.cpp" />
-    <ClCompile Include="Texture.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -161,10 +160,10 @@
     <ClInclude Include="D:\Coding\imgui\imgui_internal.h" />
     <ClInclude Include="ImGuiLayer.h" />
     <ClInclude Include="Mesh.h" />
+    <ClInclude Include="Model.h" />
     <ClInclude Include="PlayerInput.h" />
     <ClInclude Include="Shaders.h" />
     <ClInclude Include="stb_image.h" />
-    <ClInclude Include="Texture.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>
   <ItemGroup>

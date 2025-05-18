@@ -5,12 +5,15 @@
 #include "Shaders.h"
 #include "Camera.h"
 #include "PlayerInput.h"
-#include "Texture.h"
+#include "Model.h"
 #include <vector>
 #include <iostream>
 #include <filesystem>
 #include "glm/glm.hpp"
 #include "glm/gtc/matrix_transform.hpp"
+#include <assimp/Importer.hpp>
+#include <assimp/scene.h>
+#include <assimp/postprocess.h>
 
 
 float lastFrame = 0.0f;
@@ -41,8 +44,6 @@ void Application::Init() {
 							   1, 2, 3 // second triangle
 	};
 
-	m_Mesh = std::make_unique<Mesh>(vertices, sizeof(vertices), indices ,sizeof(indices) /sizeof(unsigned int));
-
 	m_Camera = std::make_unique<Camera>(
 		glm::vec3(0.0f, 0.0f, 3.0f),   // position
 		glm::vec3(0.0f, 1.0f, 0.0f),   // world-up
@@ -56,8 +57,7 @@ void Application::Init() {
 		std::cout << "Camera is nullptr" << std::endl;
 
 	m_Shaders = std::make_unique <Shader>("Shaders/4.5.texture.vs", "Shaders/4.5.texture.fs");
-	m_Textures.push_back(std::make_unique<Texture>("Resources/Textures/awesomeface.png"));
-	m_Textures.push_back(std::make_unique<Texture>("Resources/Textures/container.jpg"));
+	m_Model = std::make_unique<Model>("Resources/Models/backpack/backpack.obj");
 
 
 	glEnable(GL_DEPTH_TEST);
@@ -72,31 +72,27 @@ void Application::Run() {
 
 		m_Window->PollEvents();
 		m_PlayerInput->processInput(deltaTime);
+		m_ImGuiLayer->Begin();
 
 		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		m_Shaders->use();
 
 		// Recompute view and projection each frame in case of camera movement
-		glm::mat4 model = glm::mat4(1.0f);
 		glm::mat4 view = m_Camera->GetViewMatrix();
 		glm::mat4 projection = glm::perspective(glm::radians(m_Camera->Zoom),
 			(float)m_Window->GetScreenWidth() / (float)m_Window->GetScreenHeight(), 0.1f, 100.0f);
-
-		m_ImGuiLayer->Begin();
-		m_Shaders->use();
-		m_Shaders->setMat4("model", model);
 		m_Shaders->setMat4("view", view);
 		m_Shaders->setMat4("projection", projection);
-
-		if (m_Textures.size() >= 2) {
-			m_Textures[0]->Bind(0); // texture unit 0
-			m_Textures[1]->Bind(1); // texture unit 1
-
-			m_Shaders->setInt("texture1", 0); 
-			m_Shaders->setInt("texture2", 1);
-		}
 		
-		m_Mesh->Draw();
+		// render the model
+		glm::mat4 model = glm::mat4(1.0f);
+		model = glm::translate(model, glm::vec3(0.0f, 0.0f, 0.0f)); // translate it down so it's at the center of the scene
+		model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));	// it's a bit too big for our scene, so scale it down
+		m_Shaders->setMat4("model", model);
+		m_Model->Draw(*m_Shaders);
+
+		
 		m_ImGuiLayer->Render();
 		m_ImGuiLayer->End();
 
