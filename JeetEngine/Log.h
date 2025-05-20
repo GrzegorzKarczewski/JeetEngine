@@ -38,20 +38,3 @@ private:
     std::ofstream logFile_;
     std::mutex mutex_;
 };
-
-// Usage example:
-/*
-int main() {
-    // Initialize logger
-    SimpleLogger::Get().Initialize("app.log");
-
-    // Log messages
-    SimpleLogger::Get().Info("Application started");
-    SimpleLogger::Get().Warning("Low memory warning");
-    SimpleLogger::Get().Error("Failed to load resource");
-
-    // Cleanup
-    SimpleLogger::Get().Shutdown();
-    return 0;
-}
-*/

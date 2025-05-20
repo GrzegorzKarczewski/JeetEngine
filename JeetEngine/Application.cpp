@@ -1,6 +1,7 @@
 ﻿#include "Application.h"
 #include "Window.h"
 #include "ImGuiLayer.h"
+#include "imgui.h"
 #include "Mesh.h" 
 #include "Shaders.h"
 #include "Camera.h"
@@ -11,10 +12,14 @@
 #include <filesystem>
 #include "glm/glm.hpp"
 #include "glm/gtc/matrix_transform.hpp"
+#define GLM_ENABLE_EXPERIMENTAL
+#include "glm/gtx/matrix_decompose.hpp"
+#include "glm/gtc/type_ptr.hpp" 
 #include <assimp/Importer.hpp>
 #include <assimp/scene.h>
 #include <assimp/postprocess.h>
 #include "Log.h"
+#include <ImGuizmo.h>
 
 unsigned int SCR_WIDTH = 800;
 unsigned int SCR_HEIGHT = 600;
@@ -60,7 +65,7 @@ void Application::Init() {
 	glEnable(GL_DEPTH_TEST);
 
 	try {
-		m_Models.push_back(std::make_unique<Model>("Resources/Models/backpack/backpack.obj"));
+		m_Models.push_back(std::make_unique<Model>("Resources/Models/backpack/backpack.obj",false, true));
 		JeetLogger::Get().Info("Loaded model: backpack.obj");
 	}
 	catch (const std::exception& e) {
@@ -74,9 +79,6 @@ void Application::Init() {
 	catch (const std::exception& e) {
 		JeetLogger::Get().Error("Failed to load girl.obj: %s", e.what());
 	}
-
-
-
 }
 
 void Application::Run() {
@@ -93,7 +95,18 @@ void Application::Run() {
 		m_Window->PollEvents();
 		m_PlayerInput->processInput(deltaTime);
 		m_ImGuiLayer->Begin();
+		// ----------------------------------IMGUIZMO -----------------------------------//
+		ImGuizmo::BeginFrame();
+		// Optional: Define the area of the screen for the gizmo (usually the full window)
+		ImGuizmo::SetRect(0, 0, (float)SCR_WIDTH, (float)SCR_HEIGHT);
+		// Set view and projection
+		ImGuizmo::SetOrthographic(false); // Use perspective
+		ImGuizmo::SetDrawlist(ImGui::GetBackgroundDrawList()); 
+		// Operation mode: TRANSLATE / ROTATE / SCALE
+		static ImGuizmo::OPERATION gizmoOperation = ImGuizmo::TRANSLATE;
+		static ImGuizmo::MODE gizmoMode = ImGuizmo::WORLD;
 
+	
 		glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		m_Shaders->use();
@@ -107,20 +120,33 @@ void Application::Run() {
 		m_Shaders->setVec3("lightPos", glm::vec3(1.2f, 1.0f, 2.0f));
 		m_Shaders->setVec3("lightColor", glm::vec3(1.0f, 1.0f, 1.0f));
 		m_Shaders->setVec3("viewPos", m_Camera->Position);
+	
+		// Draw first model at -3 units on X axis
+		glm::mat4 model1 = glm::mat4(1.0f);
+		model1 = glm::translate(model1, glm::vec3(-3.0f, 0.0f, 0.0f));
+		model1 = glm::scale(model1, glm::vec3(1.0f));
+		m_Shaders->setMat4("model", model1);
+		m_Models[0]->Draw(*m_Shaders);
+
+		// Draw second model at origin (can be manipulated with ImGuizmo)
+		glm::mat4 model2 = glm::mat4(1.0f);
+		model2 = glm::translate(model2, glm::vec3(0.0f, 0.0f, 0.0f));
+		model2 = glm::scale(model2, glm::vec3(1.0f));
+		m_Shaders->setMat4("model", model2);
+		m_Models[1]->Draw(*m_Shaders);
+
+		// Manipulate second model interactively
+		ImGuizmo::Manipulate(glm::value_ptr(view),
+			glm::value_ptr(projection),
+			gizmoOperation,
+			gizmoMode,
+			glm::value_ptr(model2));
 
 
-		
-		// render the model
-		glm::mat4 model = glm::mat4(1.0f);
-		model = glm::translate(model, glm::vec3(0.0f, 0.0f, 0.0f)); // translate it down so it's at the center of the scene
-		model = glm::scale(model, glm::vec3(1.0f, 1.0f, 1.0f));	// it's a bit too big for our scene, so scale it down
-		m_Shaders->setMat4("model", model);
 		/*for (int i = 0; i < m_Models.size(); i++) {
 			m_Models[i]->Draw(*m_Shaders);
-		}
-		*/
-		m_Models[1]->Draw(*m_Shaders);
-		
+		}*/
+				
 		m_ImGuiLayer->Render();
 		m_ImGuiLayer->End();
 
